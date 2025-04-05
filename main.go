@@ -148,7 +148,7 @@ func fastestDescent(x0, y0, tolerance float64, maxIter int) (float64, float64) {
 		// x_new = x_prev - step * df/dx
 		// y_new = y_prev - step * df/dy
 		ratios = calcRatios(x, y, -derivX, -derivY)
-		fmt.Printf("Подстановка у исходную функцию %.10f*h^2 + %.10f*h + %.10f\n", ratios[0], ratios[1], ratios[2])
+		fmt.Printf("Подстановка в исходную функцию %.10f*h^2 + %.10f*h + %.10f\n", ratios[0], ratios[1], ratios[2])
 		// считаем шаг через вторую производную + приравнивание к нулю
 		step = findStep(ratios)
 		fmt.Printf("Шаг h = %.4f\n", step)
