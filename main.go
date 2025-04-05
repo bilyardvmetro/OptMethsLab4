@@ -11,6 +11,26 @@ func f(x, y float64) float64 {
 	return 7*x*x + 3*y*y + 0.5*x*y - 3*x - 5*y + 2
 }
 
+// Частная производная по x
+func dfdx(x, y float64) float64 {
+	return 14*x + 0.5*y - 3
+}
+
+// Частная производная по y
+func dfdy(x, y float64) float64 {
+	return 6*y + 0.5*x - 5
+}
+
+func findX(y float64) float64 {
+	// выражаем x из ч.п. по y
+	return (-0.5*y + 3) / 14
+}
+
+func findY(x float64) float64 {
+	// выражаем y из ч.п. по x
+	return (-0.5*x + 5) / 6
+}
+
 // Метод покоординатного спуска
 // (x0, y0) - начальное приближение, tolerance - точность, maxIter - чтобы без бредика
 func coordinateDescent(x0, y0, tolerance float64, maxIter int) (float64, float64) {
@@ -54,16 +74,6 @@ func coordinateDescent(x0, y0, tolerance float64, maxIter int) (float64, float64
 	return x, y
 }
 
-func findX(y float64) float64 {
-	// выражаем x из ч.п. по y
-	return (-0.5*y + 3) / 14
-}
-
-func findY(x float64) float64 {
-	// выражаем y из ч.п. по x
-	return (-0.5*x + 5) / 6
-}
-
 // Метод градиентного спуска
 func gradDescent(x0, y0, alpha, tolerance float64, maxIter int) (float64, float64) {
 	x, y := x0, y0
@@ -93,16 +103,6 @@ func gradDescent(x0, y0, alpha, tolerance float64, maxIter int) (float64, float6
 	}
 	fmt.Println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
 	return x, y
-}
-
-// Частная производная по x
-func dfdx(x, y float64) float64 {
-	return 14*x + 0.5*y - 3
-}
-
-// Частная производная по y
-func dfdy(x, y float64) float64 {
-	return 6*y + 0.5*x - 5
 }
 
 func calcRatios(x, y, dx, dy float64) []float64 {
@@ -184,7 +184,7 @@ func main() {
 	fmt.Printf("Минимум функции достигается в точке (x = %.4f, y = %.4f) со значением f(x,y) = %.4f\n", xMin, yMin, f(xMin, yMin))
 	fmt.Println("=================================================================================================\n")
 
-	fmt.Println("Метод Градиентного Спуска")
+	fmt.Println("Метод Наискорейшего Спуска")
 	fmt.Println("--------------------------------------------------------------------------------------------------")
 	xMin, yMin = fastestDescent(x0, y0, tolerance, maxIter)
 	fmt.Printf("Минимум функции достигается в точке (x = %.4f, y = %.4f) со значением f(x,y) = %.4f\n", xMin, yMin, f(xMin, yMin))
